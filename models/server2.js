@@ -7,6 +7,9 @@ class Server {
         this.app = express();
         this.port = process.env.PORT;
 
+
+
+        //Funciones que agrega más funciones
         this.middlewares();
 
         //rutas de aplicaión
@@ -20,58 +23,62 @@ class Server {
     }
     routes(){
 
+        this.app.get('/api', (req ,res)=>{
+            res.send('hola mundo de la programacion');
+
+        } )
+
         //Campiar
         this.app.get('/api0', (req , res)=>{
             res.json({
                 ok: true,
-                msg:'get API'
+                msg:'get API0'
             })
         });
 
-
-        this.app.put('/api0', (req , res)=>{
-            res.status(400).json({
+        //El estado 403 peticon ilegal
+        this.app.get('/api1', (req , res)=>{
+            res.status(403).json({
                 ok: true,
-                msg:'put API'
+                msg:'get API1'
             })
         });
 
-        this.app.post('/api0', (req , res)=>{
+        //put actualizacion de datos
+        this.app.put('/api2', (req , res)=>{
+            res.json({
+                ok: true,
+                msg:'put API2'
+            })
+        });
+
+        
+        //Post crear nuevos recursos
+        this.app.post('/api2', (req , res)=>{
             res.status(201).json({
                 ok: true,
-                msg:'put API'
+                msg:'post API'
             })
         });
 
-        this.app.delete('/api0', (req , res)=>{
+        //Peticon para borarlo
+        this.app.delete('/api2', (req , res)=>{
             res.json({
                 ok: true,
-                msg:'put API2'
+                msg:'delete API2'
             })
         });
 
-        /* PATCH */
+        /* patch peticion para sustituir una propiedad  */
         
-        this.app.patch('/api0', (req , res)=>{
+        this.app.patch('/api2', (req , res)=>{
             res.json({
                 ok: true,
-                msg:'put API2'
+                msg:'patch API2'
             })
         });
 
-
-        
-        this.app.get('/api', (req , res)=>{
-            res.send('Hello World')
-        });
-
-        this.app.get('/api2', (req , res)=>{
-            res.json({
-                ok: true,
-                msg:'put API2'
-            })
-        });
-
+   
 
        
     }

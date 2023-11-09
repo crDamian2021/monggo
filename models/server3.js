@@ -23,80 +23,65 @@ class Server {
         this.app.use(cors());
 
         this.app.use('/',express.static('public'))
-       
     }
 
 
     routes(){
 
-        //PETICION
+        this.app.get('/api', (req ,res)=>{
+            res.send('hola mundo de la programacion');
+
+        } )
+
+        //metodo de obtenr
         this.app.get('/api0', (req , res)=>{
             res.json({
                 ok: true,
-                msg:'get API'
+                msg:'get API0'
             })
         });
 
-        //PUT 
-        this.app.put('/api0', (req , res)=>{
+        //El estado 403 peticon ilegal
+        this.app.get('/api0', (req , res)=>{
             res.status(400).json({
                 ok: true,
-                msg:'put API'
+                msg:'put API1'
             })
         });
-//POST
-        this.app.post('/api0', (req , res)=>{
-            res.status(201).json({
-                ok: true,
-                msg:'put API2'
-            })
-        });
-//DELETE
-        this.app.delete('/api0', (req , res)=>{
+
+  /*       //put actualizacion de datos
+        this.app.put('/api2', (req , res)=>{
             res.json({
                 ok: true,
                 msg:'put API2'
             })
         });
+ */
+        
+        //Post crear nuevos recursos
+        this.app.post('/api0', (req , res)=>{
+            res.status(201).json({
+                ok: true,
+                msg:'post API2'
+            })
+        });
 
-        /* PATCH */
+        //Peticon para borarlo
+        this.app.delete('/api0', (req , res)=>{
+            res.json({
+                ok: true,
+                msg:'delete API2'
+            })
+        });
+
+        /* patch peticion para sustituir una propiedad  */
         
         this.app.patch('/api0', (req , res)=>{
             res.json({
                 ok: true,
-                msg:'put API2'
+                msg:'patch API2'
             })
         });
-
-
-        /* end-poin ejemploo text */
-        this.app.get('/api', (req , res)=>{
-            res.send('Hello World')
-        });
-
-
-        /* end-point ejemplo json */
-
-        this.app.get('/api2', (req , res)=>{
-            res.json({
-                ok: true,
-                msg:'put API2'
-            })
-        });
-
-        /* 403 coando se hac el llamado ilegal */
-
-        this.app.get('/api3', (req , res)=>{
-            res.status(404).json({
-                ok: true,
-                msg:'put API2'
-            })
-        });
-
-
-
-
-      
     }
     listen(){
         this.app.listen(this.port, ()=>{

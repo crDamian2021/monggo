@@ -1,4 +1,6 @@
-
+/* Forma clasica de inicializar el proyecto
+npm init -y 
+npm i exprees dotenv */
 require('dotenv').config();
 const port = process.env.PORT   
 
